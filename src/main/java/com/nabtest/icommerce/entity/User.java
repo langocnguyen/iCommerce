@@ -1,9 +1,16 @@
 package com.nabtest.icommerce.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -20,7 +27,13 @@ public class User {
 	
 	private String password;
 
-//	private JSONObject roles;
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "users_roles",
+			joinColumns = @JoinColumn(name = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
+	
+	private boolean enabled;
 
 	public Long getId() {
 		return id;
@@ -46,12 +59,19 @@ public class User {
 		this.password = password;
 	}
 
-//	public JSONObject getRoles() {
-//		return roles;
-//	}
-//
-//	public void setRoles(JSONObject roles) {
-//		this.roles = roles;
-//	}
-	
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 }
