@@ -1,20 +1,17 @@
 package com.nabtest.icommerce.token;
 
-import java.util.Date;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-
-import com.nabtest.icommerce.dto.CustomUserDetails;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.UnsupportedJwtException;
+import java.util.Date;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+import com.nabtest.icommerce.dto.CustomUserDetails;
 
 @Slf4j
 @Component
@@ -52,13 +49,13 @@ public class JwtTokenProvider {
 			Jwts.parser().setSigningKey(JWT_SECRET).parseClaimsJws(authToken);
 			return true;
 		} catch (MalformedJwtException ex) {
-			log.info("Invalid JWT token", ex);
+			log.error("Invalid JWT token", ex);
 		} catch (ExpiredJwtException ex) {
-			log.info("Expired JWT token", ex);
+			log.error("Expired JWT token", ex);
 		} catch (UnsupportedJwtException ex) {
-			log.info("Unsupported JWT token", ex);
+			log.error("Unsupported JWT token", ex);
 		} catch (IllegalArgumentException ex) {
-			log.info("JWT claims string is empty.", ex);
+			log.error("JWT claims string is empty", ex);
 		}
 		return false;
 	}

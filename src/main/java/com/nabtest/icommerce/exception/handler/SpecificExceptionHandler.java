@@ -3,10 +3,9 @@ package com.nabtest.icommerce.exception.handler;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,13 +18,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
-
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.nabtest.icommerce.dto.response.ErrorResponse;
 import com.nabtest.icommerce.enums.ErrorType;
 import com.nabtest.icommerce.exception.ValidationException;
-
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestControllerAdvice
@@ -71,7 +67,7 @@ public class SpecificExceptionHandler {
 	
 	@ExceptionHandler({Exception.class})
 	public ResponseEntity<ErrorResponse> handleOverallException(Exception ex, WebRequest request) {
-		logger.error("Internal server error");
+		logger.error("Internal server error", ex);
 		long time = System.currentTimeMillis();
 		ErrorType error = ErrorType.ERROR_INTERNAL_SERVER;
 		String detailMessage = null;
