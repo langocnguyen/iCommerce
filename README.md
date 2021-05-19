@@ -8,6 +8,9 @@ Customer is also able to order product(s) that he/she want to buy and needs to i
 
 Administrator only can add, update or delete product. 
 
+## Entity relationship diagram 
+<img src="src/main/resources/image/ERD.png">
+
 ## How to run the application ?
 ### Setup development workspace
 1. Install JDK version 8.
@@ -143,6 +146,6 @@ curl -L -X POST 'http://localhost:8080/api/v1/orders' \
 curl -L -X GET 'http://localhost:8080/api/v1/orders' \
 -H 'Authorization: Bearer <JWT Token>'
 ```
-
+<img src="https://github.com/langocnguyen/iCommerce/blob/main/src/main/resources/image/ERD.png">
 
 
