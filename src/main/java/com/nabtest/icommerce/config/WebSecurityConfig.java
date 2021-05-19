@@ -58,7 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.and()
 		.authorizeRequests()
 		.antMatchers("/api/v1/login").permitAll()
-		.antMatchers("/h2-console/**").hasRole(ADMIN_ROLE)
+		.antMatchers("/h2-console/**").permitAll()
 		.antMatchers(HttpMethod.POST, API_V1_PRODUCTS).hasRole(ADMIN_ROLE)
 		.antMatchers(HttpMethod.PUT, API_V1_PRODUCTS).hasRole(ADMIN_ROLE)
 		.antMatchers(HttpMethod.DELETE, API_V1_PRODUCTS).hasRole(ADMIN_ROLE)
