@@ -146,6 +146,4 @@ curl -L -X POST 'http://localhost:8080/api/v1/orders' \
 curl -L -X GET 'http://localhost:8080/api/v1/orders' \
 -H 'Authorization: Bearer <JWT Token>'
 ```
-<img src="https://github.com/langocnguyen/iCommerce/blob/main/src/main/resources/image/ERD.png">
-
 
