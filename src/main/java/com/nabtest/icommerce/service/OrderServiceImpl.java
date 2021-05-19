@@ -5,14 +5,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-
 import com.nabtest.icommerce.dto.filter.FilterResult;
 import com.nabtest.icommerce.dto.filter.OrderFilter;
 import com.nabtest.icommerce.dto.request.OrderDetailRequest;
@@ -61,7 +59,7 @@ public class OrderServiceImpl implements OrderService {
 			return transformToResponse(optionalOrder.get());
 		}
 
-		throw new ValidationException(ErrorType.ERROR_PRODUCT_NOT_FOUND);
+		throw new ValidationException(ErrorType.ERROR_ORDER_NOT_FOUND);
 	}
 
 	@Override
@@ -115,8 +113,8 @@ public class OrderServiceImpl implements OrderService {
 			}
 
 			// Checking remaining quantity of product
-			int sellingQuanity = productService.countNumberOfSellingProduct(productId);
-			int remainingQuantity = product.getQuantity() - sellingQuanity;
+			int sellingQuantity = productService.countNumberOfSellingProduct(productId);
+			int remainingQuantity = product.getQuantity() - sellingQuantity;
 			OrderDetailRequest orderDetailRequest = entry.getValue();
 			if (orderDetailRequest.getQuantity() > remainingQuantity) {
 				throw new ValidationException(ErrorType.ERROR_REMAINING_IS_LESS_THAN_NUMBER_OF_PRODUCT_IN_REQUEST);
