@@ -31,16 +31,27 @@ public class IcommerceApplication implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		User user = new User();
-		user.setUsername("lnnguyen");
-		user.setPassword(passwordEncoder.encode("lnnguyen"));
-		Set<Role> roles = new HashSet<>();
-		roles.add(new Role(UserRole.ROLE_ADMIN.getCode()));
-		user.setRoles(roles);
-		user.setEnabled(true);
+		User user1 = new User();
+		user1.setUsername("admin");
+		user1.setPassword(passwordEncoder.encode("admin"));
+		Set<Role> roles1 = new HashSet<>();
+		roles1.add(new Role(UserRole.ROLE_ADMIN.getCode()));
+		user1.setRoles(roles1);
+		user1.setEnabled(true);
 		
-		userRepository.save(user);
-		log.info("An user is created successfully - " + user.getUsername());
+		userRepository.save(user1);
+		log.info("An user is created successfully - " + user1.getUsername());
+		
+		User user2 = new User();
+		user2.setUsername("customer");
+		user2.setPassword(passwordEncoder.encode("customer"));
+		Set<Role> roles2 = new HashSet<>();
+		roles2.add(new Role(UserRole.ROLE_CUSTOMER.getCode()));
+		user2.setRoles(roles2);
+		user2.setEnabled(true);
+		
+		userRepository.save(user2);
+		log.info("An user is created successfully - " + user2.getUsername());
 	}
 	
 }

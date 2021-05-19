@@ -2,7 +2,6 @@ package com.nabtest.icommerce.entity;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +14,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
 import com.nabtest.icommerce.contant.Constant;
 import com.nabtest.icommerce.contant.MessageConstant;
 
@@ -56,11 +54,12 @@ public class Product {
 
 	public Product() {}
 
-	public Product(Long id, String name, Double price, String brand) {
+	public Product(Long id, String name, Double price, String brand, int quantity) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.brand = brand;
+		this.quantity = quantity;
 	}
 
 	public Long getId() {
