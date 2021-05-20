@@ -8,6 +8,9 @@ Customer is also able to order product(s) that he/she want to buy and needs to i
 
 Administrator only can add, update or delete product. 
 
+## Use case diagram 
+<img src="/src/main/resources/image/Usecase_diagram.png">
+
 ## Entity relationship diagram 
 <img src="src/main/resources/image/ERD.png">
 
